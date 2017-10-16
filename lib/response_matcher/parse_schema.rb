@@ -1,9 +1,7 @@
 module ResponseMatcher
   class ParseSchema
     def self.new(schema_path, object_hash = {})
-      config = Settings.config
-
-      config.helpers.each do |helper|
+      Settings.config.helpers.each do |helper|
         include helper
       end
 
@@ -20,7 +18,11 @@ module ResponseMatcher
         instance_variable_set "@#{name}", value
       end
 
-      @response = eval(File.read(File.absolute_path("spec/schemas/#{schema_path}.rb")))
+      @response = eval(File.read(File.absolute_path("#{Settings.config.directory}/#{schema_path}.rb")))
+    end
+
+    def call(schema_path, object_hash = {})
+      self.class.new(schema_path, object_hash).response
     end
   end
 end
