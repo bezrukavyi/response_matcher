@@ -146,7 +146,6 @@ In ```my_schema.rb```
 In ```rails_helper.rb```
 ```ruby
 ResponseMatcher::Settings.configure do |config|
-  config.helpers = [Helpers::MyHelper, ...]
   config.directory = 'spec/schemas/api/v1'
 end
 ```
