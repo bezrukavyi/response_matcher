@@ -123,7 +123,10 @@ end
 In ```rails_helper.rb```
 ```ruby
 ResponseMatcher::Settings.configure do |config|
-  config.helpers = [Helpers::MyHelper, ...]
+  config.helpers = [
+    Helpers::MyHelper,
+    ...
+  ]
 end
 ```
 
