@@ -45,11 +45,6 @@ end
     └─ ...
 ```
 
-In ```registration_spec.rb```
-```ruby
-expect(response).to response_match('my_schema', user: User.last)
-```
-
 In ```my_schema.rb``` you can describe by ruby language how looks like your response
 
 ```ruby
