@@ -1,28 +1,37 @@
 module ResponseMatcher
   class ParseSchema
-    def self.new(schema_path, object_hash = {})
-      Settings.config.helpers.each do |helper|
-        include helper
-      end
+    def self.new(schema_path, objects = {})
+      Settings.config.helpers.each { |helper| include helper }
+      attr_accessor(*objects.keys)
 
-      attr_accessor(*object_hash.keys, :schema_path, :response, :object_hash)
-
-      super(schema_path, object_hash)
+      super(schema_path, objects)
     end
 
-    def initialize(schema_path, object_hash)
-      @schema_path = schema_path
-      @object_hash = object_hash
+    attr_reader :schema_path, :objects, :response
 
-      object_hash.each do |name, value|
+    def initialize(schema_path, objects)
+      @schema_path = schema_path
+      @objects = objects
+
+      initialize_objects
+      render_schema
+    end
+
+    def call(schema_path, objects = {})
+      self.class.new(schema_path, objects).response
+    end
+
+    private
+
+    def initialize_objects
+      objects.each do |name, value|
         instance_variable_set "@#{name}", value
       end
-
-      @response = eval(File.read(File.absolute_path("#{Settings.config.directory}/#{schema_path}.rb")))
     end
 
-    def call(schema_path, object_hash = {})
-      self.class.new(schema_path, object_hash).response
+    def render_schema
+      path = File.absolute_path("#{Settings.config.directory}/#{schema_path}.rb")
+      @response = eval(File.read(path))
     end
   end
 end

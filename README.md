@@ -7,7 +7,7 @@ Simple solution to check json response in your request tests as [Rspec](https://
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'response_matcher', '~> 0.1.1'
+gem 'response_matcher'
 ```
 
 And then execute:
