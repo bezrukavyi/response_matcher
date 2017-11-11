@@ -1,13 +1,16 @@
 # ResponseMatcher
 
-Simple solution to check json response in your request tests as [Rspec](https://github.com/rspec/rspec) matcher
+[![Gem Version](https://badge.fury.io/rb/response_matcher.svg)](https://rubygems.org/gems/response_matcher/versions/0.1.2)
+[![CircleCI](https://circleci.com/gh/bezrukavyi/response_matcher/tree/master.svg?style=svg)](https://circleci.com/gh/bezrukavyi/response_matcher/tree/master)
+
+Solution for matching JSON response into [RSpec](https://github.com/rspec/rspec) request tests.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'response_matcher', '~> 0.1.1'
+gem 'response_matcher'
 ```
 
 And then execute:
